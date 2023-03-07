@@ -1,5 +1,4 @@
 // Đối tượng `Validator`
-// làm sao để build track cho shipper ????? :((((
 function Validator(options) {
     function getParent(element, selector) {
         while (element.parentElement) {
@@ -12,6 +11,7 @@ function Validator(options) {
 
     var selectorRules = {};
 
+    // Hàm thực hiện validate
     function validate(inputElement, rule) {
         var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
         var errorMessage;
@@ -134,7 +134,8 @@ function Validator(options) {
 
 
 
-// h nghĩa rules
+// Định nghĩa rules
+// Nguyên tắc của các rules:
 // 1. Khi có lỗi => Trả ra message lỗi
 // 2. Khi hợp lệ => Không trả ra cái gì cả (undefined)
 Validator.isRequired = function (selector, message) {

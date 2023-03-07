@@ -1,13 +1,17 @@
+// CHANGE PIICTURE
 
 const bigImg = document.querySelector('.detail-img')
 const smallImg = document.querySelectorAll('.detail-small-img')
 
 smallImg.forEach((imgItem)=>{
+    // console.log(imgItem);
     imgItem.addEventListener('click',function(){        
         bigImg.src=imgItem.src
     })
 })
 
+// -----------------------------------------------------------------------------
+//                  BUY PRODUCT
 const result = document.querySelector('#number-quality')
 var resultNum= result.value
 const btn1 = document.querySelector('.btn1')
@@ -40,6 +44,8 @@ btn2.addEventListener('click',function(){
 })
 
 
+// ---------------------------------------------------------------------------------
+//                          MENU TAB 
 const menuTab = document.querySelector(".tab-list");
 menuTab.addEventListener('click',function(e){
       if(e.target.classList.contains('tab-item')){
@@ -55,6 +61,8 @@ menuTab.addEventListener('click',function(e){
   })
 
 
+// -----------------------------------------------------------------------------------
+//                        ADD PRODUCT 
 const nodeProduct = document.querySelector('.chi-tiet-sp')
 const idProduct = nodeProduct.id
 const infor =document.querySelector('.infor')
@@ -66,23 +74,29 @@ const inputItem = infor.querySelector('.price-number-quality')
    
   
 function duavaogiohang(idProduct,img,nameSpham,price,soluong){
+    // lấy toàn bộ item
     var danhsachItemGioHang = layDanhSachGioHang();
 
+    // thêm item vào giỏ hàng
     var coTonTaiTrongGioHang = false;
     danhsachItemGioHang.forEach( itemGioHangHienTai=>{
+        // Nếu tồn tại tăng số lượng
         if(itemGioHangHienTai.idProduct== idProduct){                        
             itemGioHangHienTai.soluong = Number(itemGioHangHienTai.soluong) + Number(soluong) ;
             coTonTaiTrongGioHang = true;
         }
     })
+    // Nếu k có,tạo đối tượng mới và thêm vào ds item
     if(coTonTaiTrongGioHang==false){
         var itemGioHang = taoDoiTuongGioHang(idProduct,img,nameSpham,price,soluong);
         danhsachItemGioHang.push(itemGioHang);
     }
 
+    // lưu trữ lại vào local storage
     luuDsItemGioHangVaoStorage(danhsachItemGioHang)
 }
 
+// ---------------------------------------------------------------------------------
 const wrapper = document.querySelector('.wrapper');
 
 const modal = document.querySelector('.modal-container')
